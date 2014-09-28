@@ -1,0 +1,3 @@
+---- www.tianyuxintong.com Matches (2 in 2 files) ----
+Menu_0_0_mode.c (bsp\stm32f207vc_tw705\app_712\lcd):	                        // dnsr_main("www.tianyuxintong.com"); 
+Sys_config.c (bsp\stm32f207vc_tw705\app_712\protocol_808):		     	||((strcmp(DomainNameStr,"www.tianyuxintong.com")==0)&&(Vechicle_Info.Link_Frist_Mode==0)))
