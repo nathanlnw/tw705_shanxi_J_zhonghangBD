@@ -13,7 +13,7 @@
 #include  "Vdr.h"
 
  
-#define   SYSID            0x333A      //333A     
+#define   SYSID            0x334A      //333A     
                                 /*        
                                                         0x0000   -----   0x00FF  生产和研发用
                                                         0x0100   -----   0x0FFF  产品出货用
@@ -1194,6 +1194,8 @@ void  FirstRun_Config_Write(void)
  		  //---- add special -----------  
  		  Login_Menu_Flag=0;     //  输入界面为0 
 		  DF_WriteFlashSector(DF_LOGIIN_Flag_offset,0,&Login_Menu_Flag,1); 
+		  Limit_max_SateFlag=1; //使能
+		  DF_WriteFlashSector(DF_LimitSPEED_offset,0,&Limit_max_SateFlag,1); 
 		  
 
 }
@@ -1433,6 +1435,8 @@ void SetConfig(void)
 		   {
 		              ModuleStatus&=~Status_Pcheck;
            } 
+		    DF_ReadFlash(DF_LimitSPEED_offset,0,&Limit_max_SateFlag,1); 
+		   rt_kprintf("\r\n  Limit_max_stateflag=%d",Limit_max_SateFlag); 
            Rails_Routline_Read();
                  
     rt_kprintf("\r\n Read Config Over \r\n");   

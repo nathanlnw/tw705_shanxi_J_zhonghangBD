@@ -202,6 +202,8 @@ u16     Spd_adjust_counter=0; // 确保匀速状态计数器
 u16     Spd_Deltacheck_counter=0;   // 传感器速度和脉冲速度相差较大判断
 u16     Former_DeltaPlus[K_adjust_Duration]; // 前几秒的脉冲数 
 u8      Former_gpsSpd[K_adjust_Duration];// 前几秒的速度      
+u8      Illeagle_Data_kickOUT=0;  //  剔除非法数据状态
+
 //-----  车台注册定时器  ----------
 DevRegst   DEV_regist;  // 注册
 DevLOGIN   DEV_Login;   //  鉴权  
@@ -320,6 +322,8 @@ VechINFO     Vechicle_Info;     //  车辆信息
 VechINFO     Vechicle_Info_BAK;  //  车辆信息 BAK
 VechINFO     Vechicle_info_BAK2; //  车辆信息BAK2     
 u8           Login_Menu_Flag=0;       //   登陆界面 标志位
+u8           Limit_max_SateFlag=0;    //   速度最大门限限制指令  
+
 
 //------  车门开关拍照 -------
 DOORCamera   DoorOpen;    //  开关车门拍照
@@ -1109,9 +1113,17 @@ void Speed_pro(u8 *tmpinfo,u8 Invalue,u8 Point)
 		  sp_DISP=sp/100;   //  sp_Disp 单位是 0.1km/h 
 							  
 	         //------------------------------ 通过GPS模块数据获取到的速度 --------------------------------
-            if(Speed_jiade==0)	
-			   Speed_gps=(u16)sp_DISP; 
-
+            if(1==Limit_max_SateFlag)
+			 {
+			   if((sp_DISP>=1200)&&(sp_DISP<1500))
+			   	   sp_DISP=1200;     //  速度大于120 km/h   且小于150 km/h
+			   if(sp_DISP>=1500)
+                    Illeagle_Data_kickOUT=1;  // 速度大于150  剔除 
+			   else
+			   	   Speed_gps=(u16)sp_DISP;
+             }
+			 else
+			    Speed_gps=(u16)sp_DISP;
 
 
         //  Speed_gps=Speed_jiade;//800;  //  假的为了测试    
@@ -1406,8 +1418,11 @@ void  GPS_Delta_DurPro(void)    //告GPS 触发上报处理函数
 	if(UDP_dataPacket_flag==0x02) 
           GB_doubt_Data3_Trigger(lait_old,longi_old,lati_new,longi_new);   
 
-   memcpy((char*)&Gps_Gprs,(char*)&Temp_Gps_Gprs,sizeof(Temp_Gps_Gprs));	 
-
+ 
+   if(Illeagle_Data_kickOUT==0)
+	   memcpy((char*)&Gps_Gprs,(char*)&Temp_Gps_Gprs,sizeof(Temp_Gps_Gprs));   
+   else
+	   Illeagle_Data_kickOUT=0;  // clear  
 
  
 
@@ -2031,7 +2046,7 @@ u8  Stuff_RegisterPacket_0100H(u8  LinkNum)
     Original_info_Wr+=7;  
 	//  车牌颜色  
 	if(License_Not_SetEnable==1)       
-	   Original_info[Original_info_Wr++]=0; //Vechicle_Info.Dev_Color;
+	   Original_info[Original_info_Wr++]=0; //Vechicle_Info.Dev_Color; 
 	else
 	   Original_info[Original_info_Wr++]=2; //Vechicle_Info.Dev_Color;
 	

@@ -952,7 +952,7 @@ extern  VechINFO             Vechicle_Info;     //  车辆信息
 extern  VechINFO     Vechicle_Info_BAK;  //  车辆信息 BAK
 extern  VechINFO     Vechicle_info_BAK2; //  车辆信息BAK2      
 extern  u8           Login_Menu_Flag;	   //	登陆界面 标志位    
-
+extern 	u8			 Limit_max_SateFlag;	  //   速度最大门限限制指令  
 
 
 //------- 北斗扩展协议  ------------
