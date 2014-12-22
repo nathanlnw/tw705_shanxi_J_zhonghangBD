@@ -5762,16 +5762,16 @@ void  ISP_file_Check(void)
              else
 				  rt_kprintf("\r\n 硬件版本不匹配!\r\n");    
 			 //firmware
-			 if(strncmp((const char*)ISP_buffer+32+42,"HBGGHYPT",8)==0) 
+			 if(strncmp((const char*)ISP_buffer+32+42,"SXZHBDGGHYPT",12)==0) 
 			 {
 				ISP_judge_resualt++;// step 3
-				rt_kprintf("\r\n  固件版本:HBGGHYPT\r\n");	 
+				rt_kprintf("\r\n  固件版本:SXZHBDGGHYPT\r\n");	 
 			 }
 			 // operater
-			 if(strncmp((const char*)ISP_buffer+32+62,"HBTDT",8)==0) 
+			 if(strncmp((const char*)ISP_buffer+32+62,"SXZHBD",6)==0) 
 			 {
 				ISP_judge_resualt++;// step 4
-				rt_kprintf("\r\n  固件版本:HBTDT\r\n");  	 
+				rt_kprintf("\r\n  固件版本:SXZHBD\r\n");  	 
 			 }
 			 
 		 }
@@ -8942,16 +8942,16 @@ void TCP_RX_Process( u8  LinkNum)  //  ---- 808  标准协议
 										 	 rt_kprintf("\r\n 硬件版本不匹配!\r\n");   
                                         
 										//firmware
-										if(strncmp((const char*)BD_ISP.ContentData+32+42,"HBGGHYPT",8)==0) 
+										if(strncmp((const char*)BD_ISP.ContentData+32+42,"SXZHBDGGHYPT",12)==0) 
 										{
 										   ISP_judge_resualt++;// step 3
-										   rt_kprintf("\r\n  固件版本:HBGGHYPT\r\n");   
+										   rt_kprintf("\r\n  固件版本:SXZHBDGGHYPT\r\n");   
 										}
 										// operater
-										if(strncmp((const char*)BD_ISP.ContentData+32+62,"HBTDT",5)==0)  
+										if(strncmp((const char*)BD_ISP.ContentData+32+62,"SXZHBD",6)==0)  
 										{
 										   ISP_judge_resualt++;// step 4
-										   rt_kprintf("\r\n  固件版本:HBTDT\r\n");      
+										   rt_kprintf("\r\n  固件版本:SXZHBD\r\n");      
 										}
 										
                                    	}

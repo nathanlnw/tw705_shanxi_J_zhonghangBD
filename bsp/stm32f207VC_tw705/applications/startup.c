@@ -97,7 +97,7 @@ void rtthread_startup(void)
  
 	 
     #endif 	 
-   rt_kprintf("\n\r   山西中航北斗科技有限公司 GGHYPT  TW705-BD-- chip:STM32F207  2014-11-20 Version 1.0 \r\n ");          
+   rt_kprintf("\n\r   山西中航北斗科技有限公司 GGHYPT  TW705-BD-- chip:STM32F207  2014-12-22 Version 1.0 -FX\r\n ");          
 	/* show version */
 	rt_show_version(); 
 
