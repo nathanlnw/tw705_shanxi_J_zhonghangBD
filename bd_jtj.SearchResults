@@ -1,5 +1,6 @@
----- Illeagle_Data_kickOUT Matches (4 in 1 files) ----
-Protocol_808.c (bsp\stm32f207vc_tw705\app_712\protocol_808):u8      Illeagle_Data_kickOUT=0;  //  剔除非法数据状态
-Protocol_808.c (bsp\stm32f207vc_tw705\app_712\protocol_808):                    Illeagle_Data_kickOUT=1;  // 速度大于150  剔除 
-Protocol_808.c (bsp\stm32f207vc_tw705\app_712\protocol_808):   if(Illeagle_Data_kickOUT==0)
-Protocol_808.c (bsp\stm32f207vc_tw705\app_712\protocol_808):	   Illeagle_Data_kickOUT=0;  // clear  
+---- result4 Matches (6 in 1 files) ----
+IC_card.c (bsp\stm32f207vc_tw705\app_712\iccard):u8 result0=0,result1=1,result2=2,result3=4,result4=5;//i=0;
+IC_card.c (bsp\stm32f207vc_tw705\app_712\iccard):						result4=Rx_4442(53,18,(unsigned char *)Read_ICinfo_Reg.Drv_CareerID);	//从业资格证
+IC_card.c (bsp\stm32f207vc_tw705\app_712\iccard):						//rt_kprintf("\r\n从业资格证:%s,result4=%d",Read_ICinfo_Reg.Drv_CareerID,result4);
+IC_card.c (bsp\stm32f207vc_tw705\app_712\iccard):							if((result1==0)&&(result2==0)&&(result4==0))//读结果正确
+IC_card.c (bsp\stm32f207vc_tw705\app_712\iccard):			if((result1==0)&&(result2==0)&&(result4==0))//读结果正确

@@ -271,9 +271,9 @@ void  Disp_Idle(void)
              memcpy(Dis_speDer+12,"未登录",6);	
 	   	}
 	   else
-       if((VdrData.H_15[0]==0x02)||(GB19056.SPK_SpeedStatus_Abnormal.FiveMin_sec_counter)) // 速度异常  
+       if(((VdrData.H_15[0]==0x02)||(GB19056.SPK_SpeedStatus_Abnormal.FiveMin_sec_counter))&&(Limit_max_SateFlag==0)) // 速度异常  
        {
-           memcpy(Dis_speDer+10,"速度异常",8);
+             memcpy(Dis_speDer+10,"速度异常",8);
 	   }
 	   else
 	   if( VdrData.H_12[24]==0x01)	
